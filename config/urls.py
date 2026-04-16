@@ -16,16 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.http import JsonResponse
-from django.urls import path
+from django.urls import path, include
 
 
-def test_api(request):
-    return JsonResponse({
-        "message": "Hello DRF"
-    })
+# def test_api(request):
+#     return JsonResponse({
+#         "message": "Hello DRF"
+#     })
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/test/',test_api)
+    path('api/',include('post.urls'))
 ]
 
