@@ -11,12 +11,19 @@ from rest_framework import generics
 
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.filters import SearchFilter, OrderingFilter
+
+
+from .models import Post
+from .serializers import PostSerializer
+
 # class PostListCreateAPIView(APIView):
 #
-#     # def get(self, request):
-#     #     posts = Post.objects.all()
-#     #     serializer = PostSerializer(posts, many=True)
-#     #     return Response(serializer.data)
+#     def get(self, request):
+#         posts = Post.objects.all()
+#         serializer = PostSerializer(posts, many=True)
+#         return Response(serializer.data)
 #
 #     def post(self, request):
 #         serializer = PostSerializer(data=request.data)
@@ -59,3 +66,14 @@ class PostViewSetApiView(ModelViewSet):
 class PostCreateApiView(generics.CreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+
+class PostViewSet(ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ['title', 'content']
+    filterset_fields = ['title', 'created_at']
+
+    ordering_fields = ['created_at']

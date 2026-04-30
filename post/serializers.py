@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from post.models import Post
+from post.models import Post, Project
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,4 +16,11 @@ class PostSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('Content kamida 10 ta belgidan iborat bo‘lsin')
         return value
 
-
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = (
+            "title",
+            "description",
+            "owner"
+        )

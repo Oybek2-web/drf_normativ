@@ -13,4 +13,7 @@ class Post(models.Model):
         db_table = 'posts'
 
 
-
+class Project(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    owner = models.ForeignKey()

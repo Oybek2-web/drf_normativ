@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     
     'drf_spectacular',
+
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -155,6 +157,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5
 }
 
 SPECTACULAR_SETTINGS = {
