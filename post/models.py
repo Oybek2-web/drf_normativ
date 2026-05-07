@@ -1,4 +1,6 @@
 from django.db import models
+from rest_framework.authtoken.admin import User
+
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -16,4 +18,4 @@ class Post(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    owner = models.ForeignKey()
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
